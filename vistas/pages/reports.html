@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reportes — CUL</title>
+
+  <!-- Estilos globales del proyecto -->
+  <link rel="stylesheet" href="../css/global/style.css">
+  <link rel="stylesheet" href="../css/global/dashboard.css">
+  <link rel="stylesheet" href="../css/components/loading-spinner.css">
+  <link rel="stylesheet" href="../css/components/toast-notification.css">
+  <link rel="stylesheet" href="../css/components/confirmation-modal.css">
+
+  <!-- Estilos propios del módulo -->
+  <link rel="stylesheet" href="../css/pages/reports.css">
+
+  <!-- jsPDF + AutoTable (CDN) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+
+  <!-- ════════════════════════ SIDEBAR ════════════════════════ -->
+  <app-sidebar></app-sidebar>
+
+  <!-- ════════════════════════ MAIN ════════════════════════ -->
+  <div class="main">
+
+    <div class="header">
+      <app-header title="Reportes" breadcrumb="Administrador / Reportes"></app-header>
+      
+    </div>
+
+    <div class="content">
+
+      <!-- ── Acceso denegado (no-admin) ── -->
+      <div id="access-denied" style="display:none; flex-direction:column; align-items:center; justify-content:center; min-height:60vh; gap:16px; color:var(--text-muted);">
+        <span style="font-size:56px;">🔒</span>
+        <h2 style="font-family:'Playfair Display',serif; color:var(--text-primary);">Acceso Restringido</h2>
+        <p style="text-align:center; max-width:320px; line-height:1.6; color:var(--text-secondary);">
+          Este módulo es exclusivo para administradores del sistema.
+          Contacta al administrador si necesitas acceso.
+        </p>
+        <a href="../pages/dashboard.html" class="btn-report btn-report-primary" style="margin-top:8px;">← Volver al Inicio</a>
+      </div>
+
+      <!-- ══════════════ CONTENIDO PRINCIPAL ══════════════ -->
+      <div id="report-content">
+
+        <!-- ── Panel de Filtros ── -->
+        <div class="report-panel">
+          <div class="report-panel-title">
+            <span class="icon">📊</span>
+            Generador de Reportes
+          </div>
+          <p class="report-panel-subtitle">
+            Selecciona los parámetros de búsqueda para filtrar los egresados y generar un reporte en PDF.
+          </p>
+
+          <div class="filters-grid">
+
+            <!-- Filtro 1: Programa -->
+            <div class="filter-group">
+              <label for="filter-programa">📚 Programa Académico</label>
+              <select id="filter-programa">
+                <option value="">— Todos los programas —</option>
+              </select>
+            </div>
+
+            <!-- Filtro 2: Estado de empleo -->
+            <div class="filter-group">
+              <label for="filter-estado">💼 Estado de Empleo</label>
+              <select id="filter-estado">
+                <option value="">— Todos los estados —</option>
+              </select>
+            </div>
+
+            <!-- Filtro 3: Nivel académico -->
+            <div class="filter-group">
+              <label for="filter-nivel">🎓 Nivel Académico</label>
+              <select id="filter-nivel">
+                <option value="">— Todos los niveles —</option>
+              </select>
+            </div>
+
+            <!-- Filtro 4: Año de graduación (desde) -->
+            <div class="filter-group">
+              <label for="filter-anio-desde">📅 Año Graduación — Desde</label>
+              <select id="filter-anio-desde">
+                <option value="">— Sin límite —</option>
+              </select>
+            </div>
+
+            <!-- Filtro 5: Año de graduación (hasta) -->
+            <div class="filter-group">
+              <label for="filter-anio-hasta">📅 Año Graduación — Hasta</label>
+              <select id="filter-anio-hasta">
+                <option value="">— Sin límite —</option>
+              </select>
+            </div>
+
+            <!-- Filtro 6: Estado activo/inactivo -->
+            <div class="filter-group">
+              <label for="filter-activo">🔖 Condición del Registro</label>
+              <select id="filter-activo">
+                <option value="">— Todos —</option>
+                <option value="true">Solo Activos</option>
+                <option value="false">Solo Inactivos</option>
+              </select>
+            </div>
+
+          </div><!-- /filters-grid -->
+
+          <div class="report-actions">
+            <button id="btn-generar" class="btn-report btn-report-primary">
+              🔍 Generar Reporte
+            </button>
+            <button id="btn-pdf" class="btn-report btn-report-pdf" disabled>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+              Exportar PDF
+            </button>
+            <button id="btn-limpiar" class="btn-report btn-report-clear">
+              ✕ Limpiar Filtros
+            </button>
+
+            <span style="margin-left:auto; font-size:12px; color:var(--text-muted);">
+              Total en BD: <strong id="total-bd" style="color:var(--gold-dim);">—</strong> egresados
+            </span>
+          </div>
+
+        </div><!-- /report-panel -->
+
+        <!-- ── KPIs del reporte ── -->
+        <div id="kpi-section" class="report-summary" style="display:none;">
+          <div class="kpi-card gold">
+            <span class="kpi-icon">👥</span>
+            <span class="kpi-value" id="kpi-total">0</span>
+            <span class="kpi-label">Egresados encontrados</span>
+          </div>
+          <div class="kpi-card green">
+            <span class="kpi-icon">✅</span>
+            <span class="kpi-value" id="kpi-activos">0</span>
+            <span class="kpi-label">Registros activos</span>
+          </div>
+          <div class="kpi-card blue">
+            <span class="kpi-icon">💼</span>
+            <span class="kpi-value" id="kpi-empleados">0%</span>
+            <span class="kpi-label">Tasa de empleabilidad</span>
+          </div>
+          <div class="kpi-card red">
+            <span class="kpi-icon">📅</span>
+            <span class="kpi-value" id="kpi-anios" style="font-size:18px;">—</span>
+            <span class="kpi-label">Rango de años</span>
+          </div>
+        </div>
+
+        <!-- ── Resultados ── -->
+        <div class="report-results-panel" id="report-results">
+          <div class="empty-state">
+            <span class="empty-icon">📋</span>
+            <p>Configura los filtros y presiona <strong>Generar Reporte</strong> para ver los resultados.</p>
+          </div>
+        </div>
+
+      </div><!-- /report-content -->
+
+    </div><!-- /content -->
+  </div><!-- /main -->
+
+  <!-- ════════════════════════ SCRIPTS ════════════════════════ -->
+
+  <!-- Componentes compartidos del proyecto -->
+  <script src="../js/components/sidebar.js"></script>
+  <script src="../js/components/app-header.js"></script>
+  <script src="../js/components/logout.js"></script>
+  <script src="../js/components/user-button.js"></script>
+  <script src="../js/components/loading-spinner.js"></script>
+  <script src="../js/components/toast-notification.js"></script>
+  <script src="../js/components/confirmation-modal.js"></script>
+  <script src="../js/shared/api-interceptor.js"></script>
+
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="../js/shared/email-notifier.js"></script>
+
+  <!-- Módulo de reportes -->
+  <script src="../js/modules/report.js"></script>
+
+</body>
+</html>

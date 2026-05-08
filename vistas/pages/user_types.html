@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tipos de Usuario - CUL</title>
+    <link rel="stylesheet" href="../css/global/style.css">
+    <link rel="stylesheet" href="../css/global/dashboard.css">
+    <link rel="stylesheet" href="../css/components/crud-tabs.css">
+    <!-- Componentes -->
+    <link rel="stylesheet" href="../css/components/confirmation-modal.css">
+    <link rel="stylesheet" href="../css/components/loading-spinner.css">
+    <link rel="stylesheet" href="../css/components/toast-notification.css">
+    <!-- DataTable Styles -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" href="../css/components/datatable-custom.css">
+</head>
+<body>
+<script src="../js/shared/session-validator.js"></script>
+    <app-sidebar></app-sidebar>
+
+    <div class="main">
+        <app-header title="Panel de Tipos de Usuario"></app-header>
+        <div class="content">
+            <!-- BOTONES DE ACCIÓN CRUD -->
+            <crud-actions-bar></crud-actions-bar>
+            <!-- CREAR -->
+            <div id="Crear_UserType" class="crud-section">
+                <h3>Registrar Nuevo Tipo de Usuario</h3>
+                <form id="form_crear_ut">
+                    <label>Descripción:</label>
+                    <input type="text" id="description_C" placeholder="Ej: Administrador, Egresado" required><br>
+                    <button type="submit">Crear</button>
+                </form>
+            </div>
+
+            <!-- VER TODOS -->
+            <div id="get_all_UserTypes" class="crud-section">
+                <h3>Lista de Roles (Resumen)</h3>
+                <div id="contenedor_lista_ut">Cargando...</div>
+            </div>
+
+            <!-- BUSCAR -->
+            <div id="buscar_UserType" class="crud-section">
+                <h3>Detalle de Rol (ID)</h3>
+                <form id="form_buscar_ut">
+                    <input type="number" id="id_search_ut" placeholder="Ingrese ID" required>
+                    <button type="submit">Consultar Todo</button>
+                </form>
+                <div id="resultado_busqueda_ut"></div>
+            </div>
+
+            <!-- EDITAR -->
+            <div id="editar_UserType" class="crud-section">
+                <h3>Editar Tipo de Usuario</h3>
+                <form id="form_editar_ut">
+                    <label>ID Tipo (Fijo):</label>
+                    <input type="number" id="id_edit_ut" required><br>
+
+                    <label>Descripción:</label>
+                    <input type="text" id="description_E" required><br>
+
+                    <label>Estado:</label>
+                    <select id="active_E">
+                        <option value="true">Activo</option>
+                        <option value="false">Inactivo</option>
+                    </select><br>
+
+                    <button type="submit">Guardar Cambios</button>
+                </form>
+            </div>
+
+            <!-- ELIMINAR -->
+            <div id="Eliminar_UserType" class="crud-section">
+                <h3>Eliminar Tipo de Usuario</h3>
+                <form id="form_eliminar_ut">
+                    <input type="number" id="id_delete_ut" placeholder="ID a eliminar" required>
+                    <button type="submit">Eliminar</button>
+                </form>
+            </div>
+        </div><!-- fin content -->
+    </div><!-- fin main -->
+    <!-- jQuery (Requerido para DataTable) -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <!-- DataTable Scripts -->
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+
+    <script src="../js/shared/api-interceptor.js"></script>
+    <script src="../js/shared/access-control.js"></script>
+    <script src="../js/components/sidebar.js"></script>
+    <script src="../js/components/app-header.js"></script>
+    <script src="../js/components/confirmation-modal.js"></script>
+    <script src="../js/components/loading-spinner.js"></script>
+    <script src="../js/components/toast-notification.js"></script>
+    <script src="../js/components/user-button.js"></script>
+    <script src="../js/components/crud-tabs-manager.js"></script>
+    <script src="../js/components/curd-actions-bar.js"></script>
+    <script src="../js/components/datatable-initializer.js"></script>
+    <script src="../js/modules/user-types.js"></script>
+</body>
+</html>

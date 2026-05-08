@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Usuarios - CUL</title>
+    <link rel="stylesheet" href="../css/pages/login.css">
+    <link rel="stylesheet" href="../css/global/style.css">
+</head>
+<body>
+    <div class="back-button"><a href="login.html">Volver</a></div>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <h1>Registro de Usuarios</h1>
+                <p class="login-subtitle">Crea tu cuenta</p>
+            </div>
+            <div id="Crear_User">
+                <form id="form_crear_user" class="login-form">
+                    <div class="form-group">
+                        <label for="first_name_C">Nombres:</label>
+                        <input type="text" id="first_name_C" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="last_name_C">Apellidos:</label>
+                        <input type="text" id="last_name_C" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email_C">Correo Electrónico:</label>
+                        <input type="email" id="email_C" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password_C">Contraseña:</label>
+                        <input type="password" id="password_C" required>
+                    </div>
+
+                    <button type="submit" class="btn-login">Crear Usuario</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="../js/modules/user.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="../js/shared/email-notifier.js"></script>
+</body>
+</html>

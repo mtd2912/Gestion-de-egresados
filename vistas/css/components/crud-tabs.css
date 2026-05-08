@@ -1,0 +1,152 @@
+/* ===== CRUD ACTION BUTTONS ===== */
+
+.crud-actions-bar {
+    display: flex;
+    gap: 12px;
+    padding: 20px;
+    background: linear-gradient(135deg, var(--bg-subtle) 0%, #f8f9fa 100%);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    animation: slideInDown 0.4s ease-out;
+}
+
+.action-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 18px;
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.action-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    border-color: var(--text-primary);
+}
+
+.action-button:active {
+    transform: translateY(0);
+}
+
+/* Color variants */
+.action-button[data-action="create"] {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    border-color: #10b981;
+}
+
+.action-button[data-action="create"]:hover {
+    border-color: #059669;
+    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3);
+}
+
+.action-button[data-action="search"] {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    border-color: #3b82f6;
+}
+
+.action-button[data-action="search"]:hover {
+    border-color: #2563eb;
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.3);
+}
+
+.action-button[data-action="view"] {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    color: white;
+    border-color: #8b5cf6;
+}
+
+.action-button[data-action="view"]:hover {
+    border-color: #7c3aed;
+    box-shadow: 0 6px 16px rgba(139, 92, 246, 0.3);
+}
+
+.action-button[data-action="edit"] {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+    border-color: #f59e0b;
+}
+
+.action-button[data-action="edit"]:hover {
+    border-color: #d97706;
+    box-shadow: 0 6px 16px rgba(245, 158, 11, 0.3);
+}
+
+.action-button[data-action="delete"] {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+    border-color: #ef4444;
+}
+
+.action-button[data-action="delete"]:hover {
+    border-color: #dc2626;
+    box-shadow: 0 6px 16px rgba(239, 68, 68, 0.3);
+}
+
+.action-button.active-btn {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(201, 168, 76, 0.4) !important;
+    border-color: var(--gold) !important;
+}
+
+/* ===== ANIMATIONS ===== */
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+    .crud-actions-bar {
+        padding: 12px;
+        gap: 8px;
+    }
+
+    .action-button {
+        padding: 10px 12px;
+        font-size: 12px;
+        flex: 1;
+        min-width: calc(50% - 4px);
+    }
+
+    .action-button span:last-child {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .action-button {
+        min-width: calc(100% / 2.2 - 4px);
+    }
+}

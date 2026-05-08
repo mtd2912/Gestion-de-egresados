@@ -1,0 +1,151 @@
+-- ==============================
+-- INSERT DATA (ORDEN CORRECTO)
+-- ==============================
+
+-- 1. USER TYPES
+INSERT INTO user_types (description, active) VALUES 
+('administrador', true),
+('administrativo', true),
+('egresado', true);
+
+-- 2. USERS
+INSERT INTO users (first_name, last_name, email, password, id_type, active) VALUES 
+('Juan', 'Pérez', 'juan.perez@email.com', 'password123', 1, true),
+('María', 'González', 'maria.gonzalez@email.com', 'password456', 1, true),
+('Carlos', 'Rodríguez', 'carlos.rodriguez@email.com', 'password789', 2, true),
+('Ana', 'López', 'ana.lopez@email.com', 'password101', 2, true),
+('Luis', 'Martínez', 'luis.martinez@email.com', 'password202', 3, true),
+('Carmen', 'Sánchez', 'carmen.sanchez@email.com', 'password303', 2, true),
+('Pedro', 'García', 'pedro.garcia@email.com', 'password404', 3, true),
+('Laura', 'Hernández', 'laura.hernandez@email.com', 'password505', 2, true),
+('Miguel', 'Torres', 'miguel.torres@email.com', 'password606', 3, true),
+('Sofia', 'Ramírez', 'sofia.ramirez@email.com', 'password707', 2, true);
+
+-- 3. FACULTY
+INSERT INTO faculty (name, active) VALUES 
+('Ingeniería', true),
+('Medicina', true),
+('Derecho', true),
+('Administración', true);
+
+-- 4. PROGRAM
+INSERT INTO program (program_name, id_faculty, active) VALUES
+('Ingeniería de Sistemas', 1, true),
+('Ingeniería Civil', 1, true),
+('Ingeniería Industrial', 1, true),
+('Medicina General', 2, true),
+('Enfermería', 2, true),
+('Fisioterapia', 2, true),
+('Administración de Empresas', 3, true),
+('Contaduría Pública', 3, true),
+('Economía', 3, true),
+('Derecho', 4, true),
+('Psicología', 4, true),
+('Trabajo Social', 4, true);
+
+-- 5. ACADEMIC LEVELS
+INSERT INTO academic_levels (description, active) VALUES 
+('Técnico', true),
+('Tecnólogo', true),
+('Profesional', true),
+('Especialización', true),
+('Maestría', true),
+('Doctorado', true);
+
+-- 6. EMPLOYMENT STATUS
+INSERT INTO employment_statuses (description, active) VALUES 
+('Desempleado', true),
+('Empleado tiempo completo', true),
+('Empleado tiempo parcial', true),
+('Trabajador independiente', true),
+('Estudiante', true);
+
+-- 7. SECTORS
+INSERT INTO sectors (name, active) VALUES 
+('Tecnología de la Información', true),
+('Ingeniería Civil', true),
+('Salud y Medicina', true),
+('Educación', true),
+('Finanzas y Banca', true);
+
+-- 8. CONTRACT TYPES
+INSERT INTO contract_types (contract_name, description, duration, active) VALUES 
+('Tiempo Completo', 'Contrato tiempo completo', '8 horas', true),
+('Medio Tiempo', 'Contrato medio tiempo', '4 horas', true),
+('Freelance', 'Trabajo independiente', 'Variable', true);
+
+-- 9. GRADUATES (24 registros)
+INSERT INTO graduates (
+first_name,last_name,email,phone,birth_date,graduation_year,
+id_level,id_status,id_program,active
+) VALUES
+('Ana','García','ana1@email.com','300000001','1995-01-01',2020,1,1,1,true),
+('Carlos','López','carlos1@email.com','300000002','1994-01-01',2019,2,2,1,true),
+('María','Rodríguez','maria1@email.com','300000003','1996-01-01',2021,1,1,2,true),
+('José','Martínez','jose1@email.com','300000004','1993-01-01',2018,3,3,2,true),
+('Laura','Hernández','laura1@email.com','300000005','1997-01-01',2022,1,2,3,true),
+('David','González','david1@email.com','300000006','1995-01-01',2020,2,1,3,true),
+('Carmen','Pérez','carmen1@email.com','300000007','1994-01-01',2019,1,3,4,true),
+('Miguel','Sánchez','miguel1@email.com','300000008','1996-01-01',2021,2,2,4,true),
+('Isabel','Ramírez','isabel1@email.com','300000009','1993-01-01',2018,3,1,5,true),
+('Antonio','Torres','antonio1@email.com','300000010','1997-01-01',2022,1,2,5,true),
+('Elena','Flores','elena1@email.com','300000011','1995-01-01',2020,2,3,6,true),
+('Francisco','Rivera','francisco1@email.com','300000012','1994-01-01',2019,1,1,6,true),
+
+('Lucía','Gómez','lucia1@email.com','300000013','1996-01-01',2021,3,2,7,true),
+('Roberto','Díaz','roberto1@email.com','300000014','1993-01-01',2018,2,3,7,true),
+('Patricia','Vargas','patricia1@email.com','300000015','1997-01-01',2022,1,1,8,true),
+('Alejandro','Castro','alejandro1@email.com','300000016','1995-01-01',2020,2,2,8,true),
+('Natalia','Ortega','natalia1@email.com','300000017','1994-01-01',2019,3,3,9,true),
+('Sergio','Ramos','sergio1@email.com','300000018','1996-01-01',2021,1,1,9,true),
+('Andrea','Morales','andrea1@email.com','300000019','1993-01-01',2018,2,2,10,true),
+('Daniel','Jiménez','daniel1@email.com','300000020','1997-01-01',2022,1,3,10,true),
+('Cristina','Ruiz','cristina1@email.com','300000021','1995-01-01',2020,3,1,11,true),
+('Javier','Mendoza','javier1@email.com','300000022','1994-01-01',2019,2,2,11,true),
+('Mónica','Aguilar','monica1@email.com','300000023','1996-01-01',2021,1,3,12,true),
+('Fernando','Vega','fernando1@email.com','300000024','1993-01-01',2018,2,1,12,true);
+
+-- 10. JOBS
+INSERT INTO jobs (
+id_graduate, company, id_sector, position, salary,
+start_date, id_type, related_to_career, active
+)
+SELECT 
+g.id_graduate,
+'Empresa Demo',
+(SELECT id_sector FROM sectors ORDER BY RANDOM() LIMIT 1),
+'Profesional',
+2500000,
+DATE(g.graduation_year || '-06-01'),
+(SELECT id_type FROM contract_types ORDER BY RANDOM() LIMIT 1),
+true,
+true
+FROM graduates g;
+
+-- 11. CONTINUING EDUCATION
+INSERT INTO continuing_education (
+id_graduate, description_program, education_type, time, education_date, active
+) VALUES 
+(1,'Diplomado','Diplomado','12:00:00','2024-01-01',true),
+(2,'Seminario','Seminario','12:00:00','2024-01-01',true);
+
+-- 12. WORK SUPERVISOR
+INSERT INTO work_supervisor (
+id_program, first_name, last_name, id_graduate, id_job, contact_job, active
+)
+SELECT 
+p.id_program,
+'Supervisor',
+'General',
+(SELECT g.id_graduate FROM graduates g WHERE g.id_program = p.id_program LIMIT 1),
+(SELECT j.id_job FROM jobs j JOIN graduates g ON j.id_graduate = g.id_graduate WHERE g.id_program = p.id_program LIMIT 1),
+'supervisor@empresa.com',
+true
+FROM program p;
+
+-- 13. JOB OFFER
+INSERT INTO job_offer (
+position, company, salary, id_type, area, email_contact, offer_date, id_program, active
+) VALUES
+('Developer','Empresa X',3000000,1,'IT','hr@x.com','2024-01-01',1,true),
+('Analista','Empresa Y',2500000,2,'Finanzas','hr@y.com','2024-01-01',2,true);

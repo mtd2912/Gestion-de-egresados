@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ofertas de Trabajo Disponibles - CUL</title>
+    <link rel="stylesheet" href="../css/global/style.css">
+    <link rel="stylesheet" href="../css/global/dashboard.css">
+    <link rel="stylesheet" href="../css/pages/job_offer_mostrar.css">
+    <!-- Componentes -->
+    <link rel="stylesheet" href="../css/components/confirmation-modal.css">
+    <link rel="stylesheet" href="../css/components/loading-spinner.css">
+    <link rel="stylesheet" href="../css/components/toast-notification.css">
+
+    
+</head>
+<body>
+<script src="../js/shared/session-validator.js"></script>
+    <div class="main">
+        <app-header title="Ofertas de Trabajo"></app-header>
+        <div class="content">
+            <div id="ver_todos_ofertas">
+                <p style="text-align: center; color: #999; grid-column: 1/-1;">Cargando ofertas...</p>
+            </div>
+
+        </div><!-- fin content -->
+        
+    </div><!-- fin main -->
+    <!-- FOOTER -->
+<app-footer></app-footer>
+    <script src="../js/components/footer.js"></script>
+    <script src="../js/shared/api-interceptor.js"></script>
+    <script src="../js/shared/access-control.js"></script>
+    <script src="../js/components/app-header.js"></script>
+    <script src="../js/components/logout.js"></script>
+    <script src="../js/components/confirmation-modal.js"></script>
+    <script src="../js/components/loading-spinner.js"></script>
+    <script src="../js/components/toast-notification.js"></script>
+    <script src="../js/components/user-button.js"></script>
+    <script src="../js/components/crud-tabs-manager.js"></script>
+    <script src="../js/modules/job_offer.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CUL — Corporación Universitaria Latinoamericana</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/pages/index.css">
+</head>
+<body>
+
+<!-- TOPBAR -->
+<header>
+  <div class="topbar">
+    <div class="topbar-social">
+      <img src="../img/png/facebook.png" alt="Facebook">
+      <img src="../img/png/twitter.png" alt="Twitter">
+      <img src="../img/png/youtube.png" alt="YouTube">
+      <img src="../img/png/instagram.png" alt="Instagram">
+      <img src="../img/png/linkedin.png" alt="LinkedIn">
+    </div>
+    <div class="topbar-links">
+      <a href="#">Aspirante</a>
+      <a href="#">Estudiante</a>
+      <a href="#">Egresados</a>
+      <a href="#">Profesores</a>
+      <a href="#">Administrativos</a>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="../img/png/logo.png" alt="CUL Logo">
+    </div>
+    <div class="menu">
+      <a href="#" class="active">Inicio</a>
+      <a href="#">Somos CUL</a>
+      <a href="#">Admisiones</a>
+      <a href="#">Programas</a>
+      <a href="#">Internacionalización</a>
+      <a href="#">Investigación</a>
+      <a href="#">Bienestar</a>
+    </div>
+    <div class="hamburger" id="hamburgerBtn">☰</div>
+  </nav>
+</header>
+
+<!-- MOBILE SIDEBAR -->
+<div id="sidebar" class="sidebar">
+  <div class="close-btn" id="closeBtn">✕ Cerrar</div>
+  <ul class="sidebar-menu">
+    <li class="active">Inicio</li>
+    <li>Somos CUL <span>›</span></li>
+    <li>Admisiones <span>›</span></li>
+    <li>Programas <span>›</span></li>
+    <li>Internacionalización <span>›</span></li>
+    <li>Investigación <span>›</span></li>
+    <li>Bienestar</li>
+  </ul>
+</div>
+
+<!-- MAIN -->
+<main>
+
+  <!-- BANNER 1 -->
+  <section class="banner-section">
+    <div class="slider">
+      <div class="slides" id="banner1-slides"></div>
+      <div class="dots" id="banner1-dots"></div>
+    </div>
+  </section>
+
+  <!-- NOTICIAS -->
+  <section class="news-section">
+    <div class="news-header">
+      <h2>Noticias</h2>
+      <a href="#" class="ver-noticias">Ver todas las noticias →</a>
+    </div>
+    <div class="news-container">
+      <div class="news-card">
+        <img src="../img/noticias/image1.png" alt="Noticia 1">
+        <h3>Conviértete en monitor académico y fortalece tus habilidades mientras apoyas a otros estudiantes en su proceso de aprendizaje.</h3>
+      </div>
+      <div class="news-card">
+        <img src="../img/noticias/image2.png" alt="Noticia 2">
+        <h3>La CUL continúa ampliando sus oportunidades internacionales mediante convenios de movilidad académica.</h3>
+      </div>
+      <div class="news-card">
+        <img src="../img/noticias/image3.png" alt="Noticia 3">
+        <h3>La universidad promueve el bienestar integral de su comunidad mediante diferentes líneas de atención y apoyo.</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- BANNER 2 -->
+  <section class="banner-section">
+    <div class="slider">
+      <div class="slides" id="banner2-slides"></div>
+      <div class="dots" id="banner2-dots"></div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<app-footer></app-footer>
+
+<a href="pages/login.html" class="floating-btn" title="Iniciar Sesión">
+  <img src="../img/png/user.png" alt="Login">
+</a>
+
+<script src="../js/shared/script.js"></script>
+<script src="../js/components/footer.js"></script>
+<script>
+  // Hamburger menu
+  document.getElementById('hamburgerBtn').addEventListener('click', () => {
+    document.getElementById('sidebar').classList.add('active');
+  });
+  document.getElementById('closeBtn').addEventListener('click', () => {
+    document.getElementById('sidebar').classList.remove('active');
+  });
+</script>
+</body>
+</html>

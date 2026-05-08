@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Supervisores de Trabajo - CUL</title>
+    <link rel="stylesheet" href="../css/global/style.css">
+    <link rel="stylesheet" href="../css/global/dashboard.css">
+    <link rel="stylesheet" href="../css/components/crud-tabs.css">
+    <!-- Componentes -->
+    <link rel="stylesheet" href="../css/components/confirmation-modal.css">
+    <link rel="stylesheet" href="../css/components/loading-spinner.css">
+    <link rel="stylesheet" href="../css/components/toast-notification.css">
+    <!-- DataTable Styles -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" href="../css/components/datatable-custom.css">
+</head>
+<body>
+<script src="../js/shared/session-validator.js"></script>
+    <app-sidebar></app-sidebar>
+
+    <div class="main">
+        <app-header title="Panel de Supervisores de Trabajo"></app-header>
+        <div class="content">
+            <!-- BOTONES DE ACCIÓN CRUD -->
+            <crud-actions-bar></crud-actions-bar>
+            <!-- CREAR -->
+            <div id="Crear_Supervisor" class="crud-section">
+                <h3>Registrar Nuevo Supervisor</h3>
+                <form id="form_crear_supervisor">
+                    <label>ID Programa:</label> 
+                    <input type="number" id="id_program_C" required><br>
+
+                    <label>Nombres:</label> 
+                    <input type="text" id="first_name_C" required><br>
+
+                    <label>Apellidos:</label> 
+                    <input type="text" id="last_name_C" required><br>
+
+                    <label>ID Graduado:</label> 
+                    <input type="number" id="id_graduate_C" required><br>
+
+                    <label>ID Empleo (Job):</label> 
+                    <input type="number" id="id_job_C" required><br>
+
+                    <label>Contacto (Email/Tel):</label> 
+                    <input type="text" id="contact_job_C" required><br>
+
+                    <button type="submit">Registrar</button>
+                </form>
+            </div>
+
+            <!-- VER TODOS -->
+            <div id="get_all_Supervisors" class="crud-section">
+                <h3>Lista de Supervisores</h3>
+                <p>Cargando supervisores...</p>
+            </div>
+
+            <!-- BUSCAR -->
+            <div id="buscar_Supervisor" class="crud-section">
+                <h3>Buscar Supervisor</h3>
+                <form id="form_buscar">
+                    <label>ID del Supervisor:</label>
+                    <input type="number" id="id_search" required>
+                    <button type="submit">Buscar</button>
+                </form>
+                <div id="resultado_busqueda">
+                </div>
+            </div>
+
+            <!-- EDITAR -->
+            <div id="editar_Supervisor" class="crud-section">
+                <h3>Editar Supervisor</h3>
+                <form id="form_editar_ws">
+                    <label>ID Supervisor (Fijo):</label>
+                    <input type="number" id="id_edit" required><br>
+
+                    <label>ID Programa:</label>
+                    <input type="number" id="id_program_E" required><br>
+
+                    <label>Nombres:</label>
+                    <input type="text" id="first_name_E" required><br>
+
+                    <label>Apellidos:</label>
+                    <input type="text" id="last_name_E" required><br>
+
+                    <label>ID Graduado:</label>
+                    <input type="number" id="id_graduate_E" required><br>
+
+                    <label>ID Empleo:</label>
+                    <input type="number" id="id_job_E" required><br>
+
+                    <label>Contacto:</label>
+                    <input type="text" id="contact_job_E" required><br>
+
+                    <label>Activo:</label>
+                    <select id="active_E">
+                        <option value="true">Sí</option>
+                        <option value="false">No</option>
+                    </select><br>
+
+                    <button type="submit">Guardar Cambios</button>
+                </form>
+            </div>
+
+            <!-- ELIMINAR -->
+            <div id="Eliminar_Supervisor" class="crud-section">
+                <h3>Eliminar Supervisor</h3>
+                <form id="form_eliminar">
+                    <label>ID a eliminar:</label>
+                    <input type="number" id="id_delete" required>
+                    <button type="submit">Eliminar Permanentemente</button>
+                </form>
+            </div>
+        </div><!-- fin content -->
+    </div><!-- fin main -->
+    <!-- jQuery (Requerido para DataTable) -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <!-- DataTable Scripts -->
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+
+    <script src="../js/shared/api-interceptor.js"></script>
+    <script src="../js/shared/access-control.js"></script>
+    <script src="../js/components/sidebar.js"></script>
+    <script src="../js/components/app-header.js"></script>
+    <script src="../js/components/confirmation-modal.js"></script>
+    <script src="../js/components/loading-spinner.js"></script>
+    <script src="../js/components/toast-notification.js"></script>
+    <script src="../js/components/user-button.js"></script>
+    <script src="../js/components/logout.js"></script>
+    <script src="../js/components/crud-tabs-manager.js"></script>
+    <script src="../js/components/curd-actions-bar.js"></script>
+    <script src="../js/components/datatable-initializer.js"></script>
+    <script src="../js/modules/work_supervisor.js"></script>
+</body>
+</html>

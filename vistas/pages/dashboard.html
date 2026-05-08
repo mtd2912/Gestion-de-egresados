@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel de Control — CUL</title>
+<!-- Estilos globales -->
+<link rel="stylesheet" href="../css/global/style.css">
+<link rel="stylesheet" href="../css/global/dashboard.css">
+<!-- Estilos de componentes -->
+<link rel="stylesheet" href="../css/components/confirmation-modal.css">
+<link rel="stylesheet" href="../css/components/loading-spinner.css">
+<link rel="stylesheet" href="../css/components/toast-notification.css">
+<link rel="stylesheet" href="../css/components/quick-access-cards.css">
+
+</head>
+<body>
+<script src="../js/shared/session-validator.js"></script>
+
+<app-sidebar></app-sidebar>
+
+<div class="main">
+  <app-header title="Panel de Control"></app-header>
+
+  <div class="dashboard-content">
+    <!-- Componente de Accesos Rápidos -->
+    <quick-access-cards></quick-access-cards>
+
+    <div class="powerbi-container">
+      <h2 class="powerbi-title">Datos y Análisis</h2>
+      <div class="powerbi-wrapper">
+        <iframe 
+          title="datos_f" 
+          width="100%" 
+          height="600" 
+          src="https://app.powerbi.com/reportEmbed?reportId=d3fcb2fd-be5b-4b8e-a31f-8499ea18fa88&autoAuth=true&ctid=740be6bd-fd36-470e-94d9-0f0c777fadb9" 
+          frameborder="0" 
+          allowFullScreen="true">
+        </iframe>
+      </div>
+    </div>
+  </div>
+  </div>
+<script src="../js/shared/api-interceptor.js"></script>
+<script src="../js/shared/access-control.js"></script>
+<script src="../js/components/sidebar.js"></script>
+<script src="../js/components/app-header.js"></script>
+<script src="../js/components/logout.js"></script>
+<script src="../js/components/quick-access-cards.js"></script>
+<script src="../js/components/confirmation-modal.js"></script>
+<script src="../js/components/loading-spinner.js"></script>
+<script src="../js/components/toast-notification.js"></script>
+<script src="../js/components/user-button.js"></script>
+<script src="../js/components/crud-tabs-manager.js"></script>
+<script>
+function handleLogout(event) {
+  event.preventDefault();
+  event.stopPropagation();
+  
+  // Limpiar completamente todos los datos de sesión
+  localStorage.removeItem('token');
+  localStorage.removeItem('id_type');
+  localStorage.removeItem('email');
+  sessionStorage.clear();
+  
+  // Limpiar cookies si existen
+  document.cookie.split(";").forEach(function(c) { 
+    document.cookie = c
+      .replace(/^ +/, "")
+      .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+  });
+  
+  // Redirigir inmediatamente a login
+  window.location.href = 'login.html';
+  window.location.replace('login.html');
+}
+</script>
+
+</body>
+</html>
